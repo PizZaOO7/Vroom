@@ -16,7 +16,9 @@ public class CarControllerSample : MonoBehaviour
     private float maxMotorTorque; // максимальный крутящий момент, который двигатель может приложить к колесу
 
     [SerializeField] private float maxSteeringAngle; // максимальный угол поворота, который может иметь колесо
-
+    
+    public AudioSource brakeSource;
+    public AudioSource speedAudioSource;
     public void FixedUpdate()
     {
         var speed = 0f;
@@ -27,6 +29,7 @@ public class CarControllerSample : MonoBehaviour
         else if (inputControllerReader.Brake != 0)
         {
             speed = inputControllerReader.Brake;
+
         }
 
         var motor = maxMotorTorque * speed;
