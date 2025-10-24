@@ -9,7 +9,8 @@ public class CarTelemetryHandler : MonoBehaviour
 
     [SerializeField] private Transform vehicleTransform;
     [SerializeField] private Rigidbody rigidbody;
-
+    
+    
     private ObjectTelemetryData _telemetryDataData;
     private SendingData _sendingData;
 

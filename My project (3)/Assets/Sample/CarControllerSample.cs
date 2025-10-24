@@ -9,8 +9,10 @@ using UnityEngine;
 
 public class CarControllerSample : MonoBehaviour
 {
+    private Rigidbody carRigidbody ;
     [SerializeField] private InputControllerReader inputControllerReader;
     [SerializeField] private List<AxleInfo> axleInfos; // информация о каждой отдельной оси
+    [SerializeField] private float currentSpeed;
 
     [SerializeField]
     private float maxMotorTorque; // максимальный крутящий момент, который двигатель может приложить к колесу
@@ -49,6 +51,8 @@ public class CarControllerSample : MonoBehaviour
                 axleInfo.rightWheel.motorTorque = motor;
             }
         }
+        carRigidbody = GetComponent<Rigidbody>();
+        currentSpeed  = carRigidbody.linearVelocity.magnitude;
     }
 
     [Serializable]
