@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using Bhaptics.SDK2;
+using UnityEngine.SceneManagement;
 
 public class LapTimer : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class LapTimer : MonoBehaviour
     public TMP_Text lapCountText;
 
     [Header("Settings")]
-    public int totalLaps = 3;
+    public int totalLaps = 5;
 
     private float currentLapTime = 0f;
     private float bestLapTime = Mathf.Infinity;
@@ -48,7 +50,7 @@ public class LapTimer : MonoBehaviour
     {
         currentLap++;
         currentLapTime = 0f;
-
+        
         if (currentLap > totalLaps)
         {
             FinishRace();
@@ -82,6 +84,7 @@ public class LapTimer : MonoBehaviour
     {
         isRacing = false;
         Debug.Log("Гонка завершена!");
+        SceneManager.LoadScene(0);
         // Здесь можно добавить логику завершения гонки
     }
 

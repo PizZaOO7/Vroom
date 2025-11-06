@@ -1,7 +1,30 @@
 using UnityEngine;
+using Bhaptics.SDK2;
+using Unity.VisualScripting;
 
 public class StartFinishLine : MonoBehaviour
 {
+
+    int[] zxc = new int[16] {100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
+    GlovePlayTime[] playTimeValues = new GlovePlayTime[16] {
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS,
+            GlovePlayTime.ThirtyMS, GlovePlayTime.ThirtyMS };
+    GloveShapeValue[] shapeValues = new GloveShapeValue[16] {
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant,
+            GloveShapeValue.Constant, GloveShapeValue.Constant, };
+
     public LapTimer lapTimer;
     private bool canTrigger = true;
 
@@ -14,6 +37,7 @@ public class StartFinishLine : MonoBehaviour
             
             if (lapTimer.GetCurrentLap() > 0) // Не триггерим на самом старте
             {
+                BhapticsLibrary.PlayWaveform((int)PositionType.Vest,zxc,playTimeValues,shapeValues);
                 Debug.Log("11111111111111111111111111111111111111111111111111111");
                 lapTimer.CompleteLap();
                 StartCoroutine(Cooldown());

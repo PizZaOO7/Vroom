@@ -299,6 +299,17 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""65247539-c2b6-4ae6-b3be-5818255dea02"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""East"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""eb568b1f-28d1-48d6-8649-ece22a69b163"",
                     ""path"": ""<Logitech G29 Racing Wheel>/leftBumperButton"",
                     ""interactions"": """",
@@ -315,6 +326,17 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Logitech G29"",
+                    ""action"": ""Left Shift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b43bd629-115b-44ee-b914-3025f18fc58a"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Left Shift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -469,6 +491,17 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Logitech G29"",
+                    ""action"": ""Right Shift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e89b313e-a260-4a31-8154-259775baa4cc"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Right Shift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
