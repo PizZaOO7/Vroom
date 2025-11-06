@@ -109,6 +109,7 @@ public class LapTimer : MonoBehaviour
 
         return $"{minutes:00}:{seconds:00}.{milliseconds:000}";
     }
+    
 
     // Методы для получения текущих значений
     public float GetCurrentLapTime() => currentLapTime;

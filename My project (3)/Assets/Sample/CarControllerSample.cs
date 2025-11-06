@@ -6,6 +6,7 @@ using System.ComponentModel.Design;
 using Bhaptics.SDK2;
 using LogitechG29.Sample.Input;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -106,7 +107,8 @@ public class CarControllerSample : MonoBehaviour
             BhapticsLibrary.PlayMotors((int)PositionType.GloveR, glove, 0);
             Debug.Log("высокая скорость");
         }
-      
+        if (inputControllerReader.LeftShift) { SceneManager.LoadScene(1); }
+        if (inputControllerReader.RightShift) { SceneManager.LoadScene(0); }
     }
 
 }
