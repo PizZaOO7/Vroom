@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 
 public class CarControllerSample : MonoBehaviour
 {
+    [SerializeField] private Transform Transform;
     private Rigidbody carRigidbody ;
     [SerializeField] private InputControllerReader inputControllerReader;
     [SerializeField] private List<AxleInfo> axleInfos; // информация о каждой отдельной оси
@@ -81,6 +82,13 @@ public class CarControllerSample : MonoBehaviour
         }
     }
 
+    public void perevorot(Transform transform)
+    {   
+        transform.position += new Vector3(0,2,0);
+        transform.rotation = Quaternion.AngleAxis(0,new Vector3(0,0,1));
+        BhapticsLibrary.Play("boom", 0, 40, 0, 0, 0);
+    }
+
     private void Update()
     {
         if (inputControllerReader.Brake > 0.5)
@@ -107,7 +115,7 @@ public class CarControllerSample : MonoBehaviour
             BhapticsLibrary.PlayMotors((int)PositionType.GloveR, glove, 0);
             Debug.Log("высокая скорость");
         }
-        if (inputControllerReader.LeftShift) { SceneManager.LoadScene(1); }
+        if (inputControllerReader.LeftShift) { perevorot(transform); }
         if (inputControllerReader.RightShift) { SceneManager.LoadScene(0); }
     }
 
