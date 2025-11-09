@@ -88,7 +88,7 @@ public class CarControllerSample : MonoBehaviour
         {
             Debug.Log("boom");
             BhapticsLibrary.PlayMotors((int)PositionType.Vest,vest,100);
-            BhapticsLibrary.Play("boom", 0, 100, 0, 0);
+            BhapticsLibrary.Play("boom", 0, 100, 1, 0);
         }
     }
 
@@ -110,6 +110,8 @@ public class CarControllerSample : MonoBehaviour
         {
             Debug.Log("brake");
             BhapticsLibrary.Play("brake", 0, 12, 1, 0,0);
+            BhapticsLibrary.PlayMotors((int)PositionType.FootL,vest,10);
+            BhapticsLibrary.PlayMotors((int)PositionType.FootR,vest,10);
             
         }
 
