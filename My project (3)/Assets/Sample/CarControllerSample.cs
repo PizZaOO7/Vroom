@@ -7,6 +7,7 @@ using Bhaptics.SDK2;
 using LogitechG29.Sample.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 
 
@@ -20,10 +21,17 @@ public class CarControllerSample : MonoBehaviour
     [SerializeField] private List<AxleInfo> axleInfos; // информация о каждой отдельной оси
     [SerializeField] private float currentSpeed;
     [SerializeField] AudioSource[] audioSources;
+    [SerializeField] float x;
+    [SerializeField] float y;
+    [SerializeField] float z;
+
     int[] qwe = new int[3] { 100, 0, 0 };
     int[] glove = new int[3] { 100, 100, 100 };
     int[] vest = new int[16] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
     int a = 0;
+    float time;
+    float time1;
+    float time2;
     [SerializeField]
     private float maxMotorTorque; // максимальный крутящий момент, который двигатель может приложить к колесу
 
@@ -84,31 +92,36 @@ public class CarControllerSample : MonoBehaviour
         }
     }
 
-    public void perevorot(Transform transform)
-    {   
-        transform.position += new Vector3(0,1,0);
-        transform.rotation = Quaternion.AngleAxis(2,new Vector3(0,0,1));
+    public void perevorot()
+    {
+        
+        transform.position += new Vector3(0,2,0);
+        Vector3 z = transform.rotation.eulerAngles;
+        
+        transform.Rotate(0,0,-(z.z)-360); 
         BhapticsLibrary.PlayMotors((int)PositionType.Vest,vest,100);
     }
 
     private void Update()
     {
-        if (inputControllerReader.Brake > 0.5)
+        z = transform.rotation.eulerAngles.z;
+
+        if (inputControllerReader.Brake > 0.5 )
         {
             Debug.Log("brake");
-            BhapticsLibrary.Play("brake", 0, 40, 1, 0,0);
+            BhapticsLibrary.Play("brake", 0, 12, 1, 0,0);
             
         }
 
 
-        if (inputControllerReader.EastButton)
+        if (inputControllerReader.EastButton && Time.time >= time2 + 0.2f)
         {   
             
             if (audioSources[a].isPlaying) { audioSources[a].Stop(); a=(a+1)%audioSources.Length; }
                 
             BhapticsLibrary.PlayMotors((int)PositionType.GloveL, glove, 10);
             audioSources[a].Play();
-            
+            time2 = Time.time;
             Debug.Log("музыка");
         }
         if (currentSpeed > 40)
@@ -117,8 +130,9 @@ public class CarControllerSample : MonoBehaviour
             BhapticsLibrary.PlayMotors((int)PositionType.GloveR, glove, 0);
             Debug.Log("высокая скорость");
         }
-        if (inputControllerReader.LeftShift) { perevorot(transform); }
-        if (inputControllerReader.RightShift) { SceneManager.LoadScene(0); }
+        if (inputControllerReader.LeftShift && Time.time >= time + 0.2f) { perevorot();  time = Time.time; }
+        if (inputControllerReader.RightShift && Time.time >= time1 + 0.5f) { SceneManager.LoadScene(0); time1 = Time.time; }
+        
     }
 
 }

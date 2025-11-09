@@ -6,8 +6,8 @@ using UnityEngine;
 public class cameracontroller : MonoBehaviour
 {
     [SerializeField] private InputControllerReader inputControllerReader;
-    [SerializeField] private XROrigin[] xROrigins;
-    [SerializeField] private Camera[] camers;
+    [SerializeField] private Camera camers;
+    [SerializeField] private XROrigin xROrigin;
     float time;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,16 +17,16 @@ public class cameracontroller : MonoBehaviour
     }
     public void switchecamera()
     {
-        if (camers[0].isActiveAndEnabled)
+        if (xROrigin.isActiveAndEnabled)
         {
-            camers[0].enabled = false;
-            camers[1].enabled = true;
+            xROrigin.enabled = false;
+            camers.enabled = true;
             Debug.Log("1");
         }
         else 
         {
-            camers[0].enabled = true;
-            camers[1].enabled = false;
+            xROrigin.enabled = true;
+            camers.enabled = false;
             Debug.Log("2");
         }
     }
