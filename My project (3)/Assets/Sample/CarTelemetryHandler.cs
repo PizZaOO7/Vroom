@@ -64,9 +64,9 @@ public class CarTelemetryHandler : MonoBehaviour
         euler.z = Mathf.Approximately(euler.z, 180) ? 0 : euler.z;
         euler.y = Mathf.Approximately(euler.y, 180) ? 0 : euler.y;
 
-        euler.x = euler.x > 180 ? euler.x - 360 : euler.x;
-        euler.z = euler.z > 180 ? euler.z - 360 : euler.z;
-        euler.y = euler.y > 180 ? euler.y - 360 : euler.y;
+        euler.x = euler.x > 180 ? euler.x % 360 : euler.x;
+        euler.z = euler.z > 180 ? euler.z % 360 : euler.z;
+        euler.y = euler.y > 180 ? euler.y % 360 : euler.y;
 
         _telemetryDataData.Angles = euler;
     }

@@ -9,7 +9,7 @@
                     "name": "Dpad",
                     "type": "PassThrough",
                     "id": "c28dad5a-4545-4f5a-b7a6-67d4ca0a9d46",
-                    "expectedControlType": "Dpad",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -389,11 +389,33 @@
                 },
                 {
                     "name": "",
+                    "id": "ae5526ab-2f95-487c-aa84-b2a7705e0373",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "South",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3e860e19-b41d-47ca-b76a-ee1bdb42bc69",
                     "path": "<Logitech G29 Racing Wheel>/westButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Logitech G29",
+                    "action": "West",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f3e344e-44ec-4beb-8cfb-dcbdb9993194",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "West",
                     "isComposite": false,
                     "isPartOfComposite": false

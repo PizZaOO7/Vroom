@@ -30,6 +30,9 @@ public class StartFinishLine : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        BhapticsLibrary.PlayWaveform((int)PositionType.Vest,zxc,playTimeValues,shapeValues);
+        BhapticsLibrary.PlayMotors((int)PositionType.FootL, zxc, 100);
+        BhapticsLibrary.PlayMotors((int)PositionType.FootL, zxc, 100);
         if (!canTrigger) return;
 
         if (other.CompareTag("Player"))
@@ -37,7 +40,7 @@ public class StartFinishLine : MonoBehaviour
             
             if (lapTimer.GetCurrentLap() > 0) // Не триггерим на самом старте
             {
-                BhapticsLibrary.PlayWaveform((int)PositionType.Vest,zxc,playTimeValues,shapeValues);
+                
                 Debug.Log("11111111111111111111111111111111111111111111111111111");
                 lapTimer.CompleteLap();
                 StartCoroutine(Cooldown());

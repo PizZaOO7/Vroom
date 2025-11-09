@@ -22,6 +22,7 @@ public class CarControllerSample : MonoBehaviour
     [SerializeField] AudioSource[] audioSources;
     int[] qwe = new int[3] { 100, 0, 0 };
     int[] glove = new int[3] { 100, 100, 100 };
+    int[] vest = new int[16] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
     int a = 0;
     [SerializeField]
     private float maxMotorTorque; // максимальный крутящий момент, который двигатель может приложить к колесу
@@ -78,15 +79,16 @@ public class CarControllerSample : MonoBehaviour
         if (collision.gameObject.CompareTag("Environment"))
         {
             Debug.Log("boom");
-            BhapticsLibrary.Play("boom", 0, 100, 0, 0, 0);
+            BhapticsLibrary.PlayMotors((int)PositionType.Vest,vest,100);
+            BhapticsLibrary.Play("boom", 0, 100, 0, 0);
         }
     }
 
     public void perevorot(Transform transform)
     {   
-        transform.position += new Vector3(0,2,0);
-        transform.rotation = Quaternion.AngleAxis(0,new Vector3(0,0,1));
-        BhapticsLibrary.Play("boom", 0, 40, 0, 0, 0);
+        transform.position += new Vector3(0,1,0);
+        transform.rotation = Quaternion.AngleAxis(2,new Vector3(0,0,1));
+        BhapticsLibrary.PlayMotors((int)PositionType.Vest,vest,100);
     }
 
     private void Update()
@@ -94,7 +96,7 @@ public class CarControllerSample : MonoBehaviour
         if (inputControllerReader.Brake > 0.5)
         {
             Debug.Log("brake");
-            BhapticsLibrary.Play("brake", 0, 40, 0, 0,0);
+            BhapticsLibrary.Play("brake", 0, 40, 1, 0,0);
             
         }
 
@@ -104,7 +106,7 @@ public class CarControllerSample : MonoBehaviour
             
             if (audioSources[a].isPlaying) { audioSources[a].Stop(); a=(a+1)%audioSources.Length; }
                 
-            BhapticsLibrary.PlayMotors((int)PositionType.GloveL, qwe, 0);
+            BhapticsLibrary.PlayMotors((int)PositionType.GloveL, glove, 10);
             audioSources[a].Play();
             
             Debug.Log("музыка");
