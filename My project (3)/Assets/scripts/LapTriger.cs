@@ -32,7 +32,7 @@ public class StartFinishLine : MonoBehaviour
     {
         BhapticsLibrary.PlayWaveform((int)PositionType.Vest,zxc,playTimeValues,shapeValues);
         BhapticsLibrary.PlayMotors((int)PositionType.FootL, zxc, 100);
-        BhapticsLibrary.PlayMotors((int)PositionType.FootL, zxc, 100);
+        BhapticsLibrary.PlayMotors((int)PositionType.FootR, zxc, 100);
         if (!canTrigger) return;
 
         if (other.CompareTag("Player"))
