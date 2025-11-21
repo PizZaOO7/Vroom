@@ -44,11 +44,11 @@ public class CarControllerSample : MonoBehaviour
         var speed = 0f;
         if (inputControllerReader.Throttle != 0)
         {
-            speed = -inputControllerReader.Throttle;
+            speed = inputControllerReader.Throttle;
         }
         else if (inputControllerReader.Brake != 0)
         {
-            speed = inputControllerReader.Brake;
+            speed = -inputControllerReader.Brake;
 
         }
 

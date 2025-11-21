@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CarTelemetryHandler : MonoBehaviour
 {
-    private const float WAIT_TIME = SendingData.WAIT_TIME / 1000f;
+    private const float WAIT_TIME = SendingData.WAIT_TIME / 10000f;
 
     [SerializeField] private Transform vehicleTransform;
     [SerializeField] private Rigidbody rigidbody;
