@@ -5,7 +5,8 @@ public class WheelColliderVisuals : MonoBehaviour
     [System.Serializable]
     public class WheelData
     {
-        public Transform visualWheel;
+        public Transform visualWheel1;
+        public Transform visualWheel2;
         public WheelCollider wheelCollider;
         public bool isSteeringWheel = false;
     }
@@ -29,14 +30,16 @@ public class WheelColliderVisuals : MonoBehaviour
 
     private void UpdateWheelVisual(WheelData wheelData)
     {
-        if (wheelData.visualWheel == null || wheelData.wheelCollider == null) return;
+        if (wheelData.visualWheel2 == null || wheelData.wheelCollider == null) return;
 
         // Получаем позицию и вращение от WheelCollider
         wheelData.wheelCollider.GetWorldPose(out Vector3 position, out Quaternion rotation);
 
         // Применяем к визуальному колесу
-        wheelData.visualWheel.position = position;
-        wheelData.visualWheel.rotation = rotation;
+        wheelData.visualWheel1.position = position;
+        wheelData.visualWheel1.rotation = rotation;
+        //wheelData.visualWheel2.position = position;
+        //wheelData.visualWheel2.rotation = rotation;
     }
 
     public void ApplySteering(float steeringInput)
