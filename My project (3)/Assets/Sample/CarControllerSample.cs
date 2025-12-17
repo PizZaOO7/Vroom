@@ -2,13 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using Bhaptics.SDK2;
 using LogitechG29.Sample.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-
 
 
 #endregion
@@ -39,9 +36,29 @@ public class CarControllerSample : MonoBehaviour
     
     public AudioSource brakeSource;
     public AudioSource speedAudioSource;
+
+    [SerializeField] float adjustedMotorForce;
+    [SerializeField] float adjustedSteerAngle;
+
+    public SimpleTireWearController tireWearController;
+ 
     public void FixedUpdate()
     {
         var speed = 0f;
+
+        if (tireWearController != null)
+        {
+            float traction = tireWearController.GetTractionMultiplier();
+
+            // Уменьшаем силу мотора при изношенных шинах
+            adjustedMotorForce = maxMotorTorque * traction;
+
+            // Уменьшаем угол поворота для стабильности
+            adjustedSteerAngle = maxSteeringAngle * Mathf.Lerp(0.7f, 1f, traction);
+
+            
+        }
+
         if (inputControllerReader.Throttle != 0)
         {
             speed = inputControllerReader.Throttle;
@@ -52,8 +69,8 @@ public class CarControllerSample : MonoBehaviour
 
         }
 
-        var motor = maxMotorTorque * speed;
-        var steering = maxSteeringAngle * inputControllerReader.Steering;
+        var motor = adjustedMotorForce * speed;
+        var steering = adjustedSteerAngle * inputControllerReader.Steering;
 
         foreach (var axleInfo in axleInfos)
         {
@@ -91,6 +108,20 @@ public class CarControllerSample : MonoBehaviour
             BhapticsLibrary.Play("boom", 0, 100, 1, 0);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("pitstop"))
+        {
+            Debug.Log("pit");
+            
+            
+            Debug.Log("pitstop");
+            perevorot();
+            
+        }
+    }
+        
+   
 
     public void perevorot()
     {

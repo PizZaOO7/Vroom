@@ -420,6 +420,17 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""28c241db-37e0-4d7a-99a3-e18c2b2bcfa0"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""North"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f038c92b-7e17-4452-820d-a8d70dd33f3b"",
                     ""path"": ""<Logitech G29 Racing Wheel>/optionsButton"",
                     ""interactions"": """",
