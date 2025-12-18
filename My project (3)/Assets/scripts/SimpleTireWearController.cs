@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+
 using LogitechG29.Sample.Input;
-using UnityEditor.TerrainTools;
+
 
 
 public class SimpleTireWearController : MonoBehaviour

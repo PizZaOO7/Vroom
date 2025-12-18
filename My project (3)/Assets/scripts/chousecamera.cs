@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using LogitechG29.Sample.Input;
+using UnityEngine.SceneManagement;
 
 public class CarSelectionOrbit : MonoBehaviour
 {
@@ -142,7 +143,9 @@ public class CarSelectionOrbit : MonoBehaviour
         currentCarIndex = newIndex;
         isTransitioning = false;
 
-        Debug.Log($"Переключено на машину {currentCarIndex + 1}");
+        PlayerPrefs.SetInt("SelectedCar", currentCarIndex);
+
+        Debug.Log($"Переключено на машину {currentCarIndex}");
     }
 
     void OrbitAroundCar()

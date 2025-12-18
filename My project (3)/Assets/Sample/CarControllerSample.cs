@@ -17,7 +17,7 @@ public class CarControllerSample : MonoBehaviour
     [SerializeField] private InputControllerReader inputControllerReader;
     [SerializeField] private List<AxleInfo> axleInfos; // информация о каждой отдельной оси
     [SerializeField] private float currentSpeed;
-    [SerializeField] AudioSource[] audioSources;
+    
     [SerializeField] float x;
     [SerializeField] float y;
     [SerializeField] float z;
@@ -147,16 +147,7 @@ public class CarControllerSample : MonoBehaviour
         }
 
 
-        if (inputControllerReader.EastButton && Time.time >= time2 + 0.2f)
-        {   
-            
-            if (audioSources[a].isPlaying) { audioSources[a].Stop(); a=(a+1)%audioSources.Length; }
-                
-            BhapticsLibrary.PlayMotors((int)PositionType.GloveL, glove, 10);
-            audioSources[a].Play();
-            time2 = Time.time;
-            Debug.Log("музыка");
-        }
+        
         if (currentSpeed > 40)
         {
             BhapticsLibrary.PlayMotors((int)PositionType.GloveL, glove, 0);

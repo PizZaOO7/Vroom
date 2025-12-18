@@ -38,8 +38,8 @@ public class WheelColliderVisuals : MonoBehaviour
         // Применяем к визуальному колесу
         wheelData.visualWheel1.position = position;
         wheelData.visualWheel1.rotation = rotation;
-        //wheelData.visualWheel2.position = position;
-        //wheelData.visualWheel2.rotation = rotation;
+        wheelData.visualWheel2.position = position;
+        wheelData.visualWheel2.rotation = rotation;
     }
 
     public void ApplySteering(float steeringInput)

@@ -1,31 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using TMPro;
-using Bhaptics.SDK2;
 using UnityEngine.SceneManagement;
 
-public class LapTimer : MonoBehaviour
+public class Lap : MonoBehaviour
 {
     [Header("UI Elements")]
-    public TMP_Text currentLapTimeText;
-    public TMP_Text bestLapTimeText;
-    public TMP_Text lapCountText;
+    public Text currentLapTimeText;
+    public Text bestLapTimeText;
+    public Text lapCounterText;
 
     [Header("Settings")]
-    public int totalLaps = 5;
+    public int totalLaps = 3;
 
     private float currentLapTime = 0f;
     private float bestLapTime = Mathf.Infinity;
-    private int currentLap = 0;
+    private int currentLap = 1;
     private bool isRacing = false;
-
-    // Событие для уведомления о завершении круга
-    public System.Action<int, float> OnLapCompleted;
 
     void Start()
     {
-        StartNewRace();
+        StartRace();
     }
 
     void Update()
@@ -37,68 +32,56 @@ public class LapTimer : MonoBehaviour
         }
     }
 
-    public void StartNewRace()
+    public void StartRace()
     {
-        currentLap = 0;
-        currentLapTime = 0f;
-        bestLapTime = Mathf.Infinity;
         isRacing = true;
-        StartNewLap();
-    }
-
-    public void StartNewLap()
-    {
-        currentLap++;
+        currentLap = 1;
         currentLapTime = 0f;
-        
-        if (currentLap > totalLaps)
-        {
-            FinishRace();
-            return;
-        }
-
         UpdateUIText();
-        Debug.Log($"Начат круг {currentLap}");
     }
 
     public void CompleteLap()
     {
         if (!isRacing) return;
 
-        // Проверяем, установлен ли новый рекорд
+        // Сохраняем лучшее время круга
         if (currentLapTime < bestLapTime)
         {
             bestLapTime = currentLapTime;
         }
 
-        // Вызываем событие завершения круга
-        OnLapCompleted?.Invoke(currentLap, currentLapTime);
+        // Увеличиваем счетчик кругов
+        currentLap++;
 
-        Debug.Log($"Круг {currentLap} завершен за {FormatTime(currentLapTime)}");
+        // Сбрасываем таймер текущего круга
+        currentLapTime = 0f;
 
-        // Начинаем следующий круг
-        StartNewLap();
+        // Проверяем завершение гонки
+        if (currentLap > totalLaps)
+        {
+            FinishRace();
+        }
+
+        UpdateUIText();
     }
 
     private void FinishRace()
     {
         isRacing = false;
-        Debug.Log("Гонка завершена!");
+        Debug.Log("Гонка завершена! Лучшее время: " + FormatTime(bestLapTime));
         SceneManager.LoadScene(0);
-        // Здесь можно добавить логику завершения гонки
     }
 
     private void UpdateUIText()
     {
         if (currentLapTimeText != null)
-            currentLapTimeText.text = $"Текущий круг: {FormatTime(currentLapTime)}";
+            currentLapTimeText.text = "Текущий круг: " + FormatTime(currentLapTime);
 
         if (bestLapTimeText != null)
-            bestLapTimeText.text = bestLapTime < Mathf.Infinity ?
-                $"Лучший круг: {FormatTime(bestLapTime)}" : "Лучший круг: --:--.---";
+            bestLapTimeText.text = "Лучший круг: " + (bestLapTime == Mathf.Infinity ? "--:--.---" : FormatTime(bestLapTime));
 
-        if (lapCountText != null)
-            lapCountText.text = $"Круг: {currentLap}/{totalLaps}";
+        if (lapCounterText != null)
+            lapCounterText.text = $"Круг {currentLap}/{totalLaps}";
     }
 
     private string FormatTime(float time)
@@ -107,13 +90,12 @@ public class LapTimer : MonoBehaviour
         int seconds = (int)(time % 60);
         int milliseconds = (int)((time * 1000) % 1000);
 
-        return $"{minutes:00}:{seconds:00}.{milliseconds:000}";
+        return string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
     }
-    
 
-    // Методы для получения текущих значений
+    // Методы для получения информации
     public float GetCurrentLapTime() => currentLapTime;
-    public float GetBestLapTime() => bestLapTime;
+    public float GetBestLapTime() => bestLapTime == Mathf.Infinity ? 0f : bestLapTime;
     public int GetCurrentLap() => currentLap;
     public bool IsRacing() => isRacing;
 }
