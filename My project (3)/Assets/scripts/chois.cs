@@ -24,15 +24,15 @@ public class chois : MonoBehaviour
             Debug.Log($"машина {index}");
         }
     }
-    int GetSelectedCarIndex()
-    {
+    //int GetSelectedCarIndex()
+    //{
         
 
-        // Способ 2: Из PlayerPrefs (более надежно)
-        int fromPlayerPrefs = PlayerPrefs.GetInt("SelectedCarIndex", 0);
+    //    // Способ 2: Из PlayerPrefs (более надежно)
+    //    int fromPlayerPrefs = PlayerPrefs.GetInt("SelectedCarIndex", 0);
 
-        // Возвращаем значение из PlayerPrefs если оно есть, иначе из статического поля
-        return fromPlayerPrefs;
-    }
+    //    // Возвращаем значение из PlayerPrefs если оно есть, иначе из статического поля
+    //    return fromPlayerPrefs;
+    //}
 
 }

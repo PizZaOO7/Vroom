@@ -198,7 +198,7 @@ public class CarSelectionOrbit : MonoBehaviour
         return target.position + new Vector3(x, orbitHeight, z);
     }
 
-    // UI методы
+    
     public void SelectCar(int index)
     {
         if (!isTransitioning && currentCarIndex != index)

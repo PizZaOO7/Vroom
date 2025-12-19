@@ -121,42 +121,42 @@ public class LapTimer : MonoBehaviour
         //ShowFinishMessage();
     }
 
-    private void ShowFinishMessage()
-    {
-        // Используем корутину для отображения сообщения
-        StartCoroutine(DisplayFinishMessage());
-    }
+    //private void ShowFinishMessage()
+    //{
+    //    // Используем корутину для отображения сообщения
+    //    StartCoroutine(DisplayFinishMessage());
+    //}
 
-    private IEnumerator DisplayFinishMessage()
-    {
-        float displayTime = 5f;
-        float elapsedTime = 0f;
+    //private IEnumerator DisplayFinishMessage()
+    //{
+    //    float displayTime = 5f;
+    //    float elapsedTime = 0f;
 
-        while (elapsedTime < displayTime)
-        {
-            // Отображаем сообщение о завершении гонки
-            Rect messageRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 50, 300, 100);
-            GUIStyle messageStyle = new GUIStyle();
-            messageStyle.fontSize = 32;
-            messageStyle.normal.textColor = Color.yellow;
-            messageStyle.alignment = TextAnchor.MiddleCenter;
-            messageStyle.fontStyle = FontStyle.Bold;
+    //    while (elapsedTime < displayTime)
+    //    {
+    //        // Отображаем сообщение о завершении гонки
+    //        Rect messageRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 50, 300, 100);
+    //        GUIStyle messageStyle = new GUIStyle();
+    //        messageStyle.fontSize = 32;
+    //        messageStyle.normal.textColor = Color.yellow;
+    //        messageStyle.alignment = TextAnchor.MiddleCenter;
+    //        messageStyle.fontStyle = FontStyle.Bold;
 
-            GUI.Label(messageRect, "ГОНКА ЗАВЕРШЕНА!", messageStyle);
+    //        GUI.Label(messageRect, "ГОНКА ЗАВЕРШЕНА!", messageStyle);
 
-            // Отображаем лучшее время
-            Rect timeRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 + 20, 300, 50);
-            GUIStyle timeStyle = new GUIStyle();
-            timeStyle.fontSize = 24;
-            timeStyle.normal.textColor = Color.green;
-            timeStyle.alignment = TextAnchor.MiddleCenter;
+    //        // Отображаем лучшее время
+    //        Rect timeRect = new Rect(Screen.width / 2 - 150, Screen.height / 2 + 20, 300, 50);
+    //        GUIStyle timeStyle = new GUIStyle();
+    //        timeStyle.fontSize = 24;
+    //        timeStyle.normal.textColor = Color.green;
+    //        timeStyle.alignment = TextAnchor.MiddleCenter;
 
-            GUI.Label(timeRect, $"Лучший круг: {FormatTime(bestLapTime)}", timeStyle);
+    //        GUI.Label(timeRect, $"Лучший круг: {FormatTime(bestLapTime)}", timeStyle);
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-    }
+    //        elapsedTime += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //}
 
     private string FormatTime(float time)
     {
